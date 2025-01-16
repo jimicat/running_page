@@ -13,7 +13,7 @@ interface RunTableProps {
 }
 
 
-const RunTable: React.FC<RunTableProps> = ({ runs }) => {
+const RunTable: React.FC<RunTableProps> = () => {
   const { activityList, loading, error } = useActivities();
 
   if (loading) {
