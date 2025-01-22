@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, Calendar, Map, Timer } from 'lucide-react';
+import { Activity, Calendar, Route, Timer } from 'lucide-react';
 import { YearlyStats } from '../lib/types';
 import { formatDistance, formatSpeed } from '../lib/utils';
 
@@ -7,51 +7,44 @@ interface YearCardProps {
   stats: YearlyStats;
 }
 
-export const YearCard: React.FC<YearCardProps> = ({ stats }) => {
+const YearCard: React.FC<YearCardProps> = ({ stats }) => {
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-      <h2 className="text-3xl font-bold text-gray-800 mb-4">{stats.year}年度统计</h2>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex items-center space-x-3">
-          <Map className="w-5 h-5 text-blue-500" />
-          <div>
-            <p className="text-sm text-gray-600">总距离</p>
-            <p className="text-lg font-semibold">{formatDistance(stats.totalDistance)}</p>
-          </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="bg-black/40 rounded-lg p-4 border border-green-500/20">
+        <div className="flex items-center space-x-2 mb-2">
+          <Route className="w-4 h-4" />
+          <span className="text-xs text-green-300">TOTAL_DISTANCE</span>
         </div>
-        <div className="flex items-center space-x-3">
-          <Activity className="w-5 h-5 text-green-500" />
-          <div>
-            <p className="text-sm text-gray-600">总跑步次数</p>
-            <p className="text-lg font-semibold">{stats.totalRuns}次</p>
-          </div>
+        <p className="text-2xl">{formatDistance(stats.totalDistance || 0)}</p>
+      </div>
+
+      <div className="bg-black/40 rounded-lg p-4 border border-green-500/20">
+        <div className="flex items-center space-x-2 mb-2">
+          <Activity className="w-4 h-4" />
+          <span className="text-xs text-green-300">TOTAL_RUNS</span>
         </div>
-        <div className="flex items-center space-x-3">
-          <Timer className="w-5 h-5 text-yellow-500" />
-          <div>
-            <p className="text-sm text-gray-600">平均配速</p>
-            <p className="text-lg font-semibold">{formatSpeed(stats.averageSpeed)}</p>
-          </div>
+        <p className="text-2xl">{stats.totalRuns} 次</p>
+      </div>
+
+      <div className="bg-black/40 rounded-lg p-4 border border-green-500/20">
+        <div className="flex items-center space-x-2 mb-2">
+          <Timer className="w-4 h-4" />
+          <span className="text-sm text-green-300">AVG_SPEED </span>
         </div>
-        <div className="flex items-center space-x-3">
-          <Calendar className="w-5 h-5 text-purple-500" />
-          <div>
-            <p className="text-sm text-gray-600">平均距离</p>
-            <p className="text-lg font-semibold">{formatDistance(stats.averageDistance)}</p>
-          </div>
+        <p className="text-2xl">{formatSpeed(stats.averageSpeed)}</p>
+      </div>
+
+      <div className="bg-black/40 rounded-lg p-4 border border-green-500/20">
+        <div className="flex items-center space-x-2 mb-2">
+          <Calendar className="w-4 h-4" />
+          <span className="text-sm text-green-300">AVG_DISTANCE</span>
+        </div>
+          <p className="text-2xl">{formatDistance(stats.averageDistance)}</p>
         </div>
       </div>
-      <div className="mt-4 pt-4 border-t border-gray-200">
-        <h3 className="text-sm font-medium text-gray-600 mb-2">最长跑步记录</h3>
-        <div className="bg-gray-50 p-3 rounded-lg">
-          {stats.longestRun && (
-            <>
-              <p className="text-sm text-gray-800">{stats.longestRun.name}</p>
-              <p className="text-sm text-gray-600">{formatDistance(stats.longestRun.distance)}</p>
-            </>
-          )}
-        </div>
-      </div>
-    </div>
+
   );
 };
+
+export default YearCard;
