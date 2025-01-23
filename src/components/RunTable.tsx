@@ -1,29 +1,13 @@
-// src/components/RunTable.tsx
 import React from 'react';
 import { RunRecord } from '../lib/types';
-import useActivities from '../hook/useActivities';
 import { formatDate, formatDistance, formatSpeed } from '../lib/utils';
 import { Timer, Activity, Heart } from 'lucide-react';
 
-
 interface RunTableProps {
-
   runs: RunRecord[];
-
 }
 
-
-const RunTable: React.FC<RunTableProps> = () => {
-  const { activityList, loading, error } = useActivities();
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
+const RunTable: React.FC<RunTableProps> = ({ runs }) => {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-green-500/20">
@@ -53,7 +37,7 @@ const RunTable: React.FC<RunTableProps> = () => {
           </tr>
         </thead>
         <tbody className="divide-y divide-green-500/20">
-          {activityList.map((run) => (
+          {runs.map((run) => (
             <tr key={run.run_id} className="hover:bg-green-500/5">
               <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-green-300">
                 {formatDate(run.start_date_local)}

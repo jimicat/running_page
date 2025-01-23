@@ -24,9 +24,9 @@ function App() {
   const years = yearlyStats.map(stat => stat.year);
 
   const selectedYearStats = yearlyStats.find(stat => stat.year === selectedYear) || yearlyStats[0];
-  const filteredRuns = activities.filter(run =>
-    new Date(run.start_date).getFullYear() === selectedYear
-  );
+  const filteredRuns = activities
+    .filter(run => new Date(run.start_date).getFullYear() === selectedYear)
+    .sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -58,7 +58,7 @@ function App() {
         </div>
       </header>
 
-        <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8">
         <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/30">
           <div className="flex items-center space-x-2 mb-6">
             <MapPin className="w-5 h-5 text-green-400" />
@@ -66,24 +66,24 @@ function App() {
           </div>
           <RunningMap runs={filteredRuns} />
         </div>
-        </main>
+      </main>
 
-        <main className="container mx-auto px-4 py-8">
-          <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/30">
-            <div className="flex items-center space-x-2 mb-6">
-              <List className="w-5 h-5 text-green-400" />
-              <h2 className="text-xl font-mono font-bold text-green-400">跑步日志</h2>
-            </div>
-            <RunTable runs={filteredRuns} />
+      <main className="container mx-auto px-4 py-8">
+        <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/30">
+          <div className="flex items-center space-x-2 mb-6">
+            <List className="w-5 h-5 text-green-400" />
+            <h2 className="text-xl font-mono font-bold text-green-400">跑步日志</h2>
           </div>
-        </main>
+          <RunTable runs={filteredRuns} />
+        </div>
+      </main>
 
-        <footer className="bg-gray-800 text-gray-400 py-8 border-t border-green-500/30">
-          <div className="container mx-auto px-4 text-center font-mono">
-            <p className="text-green-400">© {new Date().getFullYear()} Running.Stats - Tracking Progress</p>
-          </div>
-        </footer>
-      </div>
+      <footer className="bg-gray-800 text-gray-400 py-8 border-t border-green-500/30">
+        <div className="container mx-auto px-4 text-center font-mono">
+          <p className="text-green-400">© {new Date().getFullYear()} Running.Stats - Tracking Progress</p>
+        </div>
+      </footer>
+    </div>
   );
 }
 
