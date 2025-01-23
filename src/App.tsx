@@ -1,7 +1,8 @@
 import RunTable from './components/RunTable';
 import YearCard from './components/YearCard';
+import { HeatMap } from './components/HeatMap';
 import { calculateYearlyStats, formatDistance } from './lib/utils';
-import { Trophy, List, MapPin } from 'lucide-react';
+import { Trophy, List, MapPin, Activity } from 'lucide-react';
 import useActivities from './hook/useActivities';
 import { Navbar } from './components/NavBar';
 import { useState } from 'react';
@@ -57,6 +58,16 @@ function App() {
           </div>
         </div>
       </header>
+
+      <main className="container mx-auto px-4 py-8">
+      <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/30">
+            <div className="flex items-center space-x-2 mb-6">
+              <Activity className="w-5 h-5 text-green-400" />
+              <h2 className="text-xl font-mono font-bold text-green-400">年度热力图</h2>
+            </div>
+            <HeatMap runs={filteredRuns} year={selectedYear} />
+          </div>
+      </main>
 
       <main className="container mx-auto px-4 py-8">
         <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/30">
