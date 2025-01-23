@@ -1,10 +1,11 @@
 import RunTable from './components/RunTable';
 import YearCard from './components/YearCard';
 import { calculateYearlyStats, formatDistance } from './lib/utils';
-import { Trophy, List } from 'lucide-react';
+import { Trophy, List, MapPin } from 'lucide-react';
 import useActivities from './hook/useActivities';
 import { Navbar } from './components/NavBar';
 import { useState } from 'react';
+import { RunningMap } from './components/RunningMap';
 
 function App() {
   const { activityList: activities, loading, error } = useActivities();
@@ -57,22 +58,32 @@ function App() {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+        <main className="container mx-auto px-4 py-8">
         <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/30">
           <div className="flex items-center space-x-2 mb-6">
-            <List className="w-5 h-5 text-green-400" />
-            <h2 className="text-xl font-mono font-bold text-green-400">跑步日志</h2>
+            <MapPin className="w-5 h-5 text-green-400" />
+            <h2 className="text-xl font-mono font-bold text-green-400">轨迹地图</h2>
           </div>
-          <RunTable runs={filteredRuns} />
+          <RunningMap runs={filteredRuns} />
         </div>
-      </main>
+        </main>
 
-      <footer className="bg-gray-800 text-gray-400 py-8 border-t border-green-500/30">
-        <div className="container mx-auto px-4 text-center font-mono">
-          <p className="text-green-400">© {new Date().getFullYear()} Running.Stats - Tracking Progress</p>
-        </div>
-      </footer>
-    </div>
+        <main className="container mx-auto px-4 py-8">
+          <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/30">
+            <div className="flex items-center space-x-2 mb-6">
+              <List className="w-5 h-5 text-green-400" />
+              <h2 className="text-xl font-mono font-bold text-green-400">跑步日志</h2>
+            </div>
+            <RunTable runs={filteredRuns} />
+          </div>
+        </main>
+
+        <footer className="bg-gray-800 text-gray-400 py-8 border-t border-green-500/30">
+          <div className="container mx-auto px-4 text-center font-mono">
+            <p className="text-green-400">© {new Date().getFullYear()} Running.Stats - Tracking Progress</p>
+          </div>
+        </footer>
+      </div>
   );
 }
 
