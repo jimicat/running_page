@@ -9,23 +9,22 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ years, selectedYear, onYearChange }) => {
   return (
-    <nav className="bg-black/80 backdrop-blur-sm border-b border-green-500/30 sticky top-0 z-50">
-      <div className="container mx-auto px-4">
+    <nav className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="container mx-auto px-4 max-w-4xl">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
-            <Terminal className="w-6 h-6 text-green-400" />
-            <span className="text-xl font-mono font-bold text-green-400">Running.Stats</span>
+            <span className="text-xl font-semibold text-blue-600">Running.Stats</span>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2 bg-black/60 px-3 py-1.5 rounded-md border border-green-500/20">
-              <Calendar className="w-4 h-4 text-green-400" />
+            <div className="flex items-center space-x-2 bg-gray-50 px-3 py-1.5 rounded-md border border-gray-200">
+              <Calendar className="w-4 h-4 text-blue-600" />
               <select 
                 value={selectedYear}
                 onChange={(e) => onYearChange(Number(e.target.value))}
-                className="bg-transparent text-green-400 font-mono border-none focus:ring-0 text-sm"
+                className="bg-transparent text-gray-700 border-none focus:ring-0 text-sm"
               >
                 {years.map(year => (
-                  <option key={year} value={year} className="bg-gray-900">
+                  <option key={year} value={year} className="bg-white">
                     {year}
                   </option>
                 ))}

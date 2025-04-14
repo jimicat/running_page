@@ -30,23 +30,22 @@ function App() {
     .sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-white">
       <Navbar
         years={years}
         selectedYear={selectedYear}
         onYearChange={setSelectedYear}
       />
 
-      <header className=" text-green-400 py-12 border-green-500/30">
+      <header className="text-blue-600 py-12 border-blue-300">
         <div className="container mx-auto px-4">
-
-          <div className="bg-black/50 backdrop-blur-lg rounded-lg p-8 font-mono border border-green-500/30">
+          <div className="max-w-4xl mx-auto bg-gray-50 backdrop-blur-lg rounded-lg p-8 font-mono border border-blue-300">
             <div className="flex items-center space-x-2 mb-6">
-              <span className="text-green-400">$</span>
+              <span className="text-blue-600">$</span>
               <span className="text-xl">stats --year {selectedYearStats.year} --format detailed</span>
             </div>
             <YearCard stats={selectedYearStats} />
-            <div className="mt-6 pt-6 border-t border-green-500/20">
+            <div className="mt-6 pt-6 border-t border-blue-300">
               <div className="flex items-center space-x-2 mb-4">
                 <Trophy className="w-4 h-4 text-yellow-500" />
                 <span className="text-yellow-500">ACHIEVEMENT_UNLOCKED</span>
@@ -60,38 +59,38 @@ function App() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-      <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/30">
+      <div className="max-w-4xl mx-auto bg-gray-50 rounded-lg shadow-lg p-6 border border-blue-300">
             <div className="flex items-center space-x-2 mb-6">
-              <Activity className="w-5 h-5 text-green-400" />
-              <h2 className="text-xl font-mono font-bold text-green-400">年度热力图</h2>
+              <Activity className="w-5 h-5 text-blue-600" />
+              <h2 className="text-xl font-mono font-bold text-blue-600">年度热力图</h2>
             </div>
             <HeatMap runs={filteredRuns} year={selectedYear} />
           </div>
       </main>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/30">
+        <div className="max-w-4xl mx-auto bg-gray-50 rounded-lg shadow-lg p-6 border border-blue-300">
           <div className="flex items-center space-x-2 mb-6">
-            <MapPin className="w-5 h-5 text-green-400" />
-            <h2 className="text-xl font-mono font-bold text-green-400">轨迹地图</h2>
+            <MapPin className="w-5 h-5 text-blue-600" />
+            <h2 className="text-xl font-mono font-bold text-blue-600">轨迹地图</h2>
           </div>
           <RunningMap runs={filteredRuns} />
         </div>
       </main>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/30">
+        <div className="max-w-4xl mx-auto bg-gray-50 rounded-lg shadow-lg p-6 border border-blue-300">
           <div className="flex items-center space-x-2 mb-6">
-            <List className="w-5 h-5 text-green-400" />
-            <h2 className="text-xl font-mono font-bold text-green-400">跑步日志</h2>
+            <List className="w-5 h-5 text-blue-600" />
+            <h2 className="text-xl font-mono font-bold text-blue-600">跑步日志</h2>
           </div>
           <RunTable runs={filteredRuns} />
         </div>
       </main>
 
-      <footer className="bg-gray-800 text-gray-400 py-8 border-t border-green-500/30">
+      <footer className="bg-gray-50 text-gray-600 py-8 border-t border-blue-300">
         <div className="container mx-auto px-4 text-center font-mono">
-          <p className="text-green-400">© {new Date().getFullYear()} Running.Stats - Tracking Progress</p>
+          <p className="text-blue-600">© {new Date().getFullYear()} Running.Stats - Tracking Progress</p>
         </div>
       </footer>
     </div>

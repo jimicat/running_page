@@ -34,28 +34,30 @@ export const RunningMap: React.FC<RunningMapProps> = ({ runs }) => {
   };
 
   return (
-      <div className="h-[500px] rounded-lg overflow-hidden">
-        <MapContainer
-          center={[center.lat, center.lng] as LatLngExpression}
-          zoom={13}
-          style={{ height: '100%', width: '100%' }}
-          className="z-0"
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            className="map-tiles"
-          />
-          {tracks.map((track, index) => (
-            <Polyline
-              key={index}
-              positions={track.map(point => [point.lat, point.lng])}
-              color="#4ade80"
-              weight={3}
-              opacity={0.8}
+      <div className="max-w-4xl mx-auto">
+        <div className="h-[500px] rounded-lg overflow-hidden shadow-sm border border-gray-200">
+          <MapContainer
+            center={[center.lat, center.lng] as LatLngExpression}
+            zoom={13}
+            style={{ height: '100%', width: '100%' }}
+            className="z-0"
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              className="map-tiles"
             />
-          ))}
-        </MapContainer>
+            {tracks.map((track, index) => (
+              <Polyline
+                key={index}
+                positions={track.map(point => [point.lat, point.lng])}
+                color="#2563eb"
+                weight={3}
+                opacity={0.8}
+              />
+            ))}
+          </MapContainer>
+        </div>
       </div>
   );
 };
